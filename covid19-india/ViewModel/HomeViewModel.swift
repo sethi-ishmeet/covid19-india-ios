@@ -39,11 +39,13 @@ class HomeViewModel: ObservableObject {
                 if self.refreshTimer == nil {
                     self.startRefreshTimer()
                 }
+                
+                self.getDistrictData()
             }
         }
     }
     
-    func  getFacts() {
+    func getFacts() {
         let apiService = APIService()
         let factEndPoint : String = "\(AppSettings.apiBaseUrl)/website_data.json"
         
@@ -59,6 +61,45 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func getDistrictData() {
+        let apiService = APIService()
+        let endPoint : String = "\(AppSettings.apiBaseUrl)/state_district_wise.json"
+        
+        apiService.get(url: endPoint) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any>
+                
+                guard let result = dictionary else {
+                    return
+                }
+                
+                for (index, state) in self.basicData.statewise.enumerated() {
+                    
+                    let districtData = (result[state.state] as? Dictionary<String, Any>)?["districtData"] as? Dictionary<String, Any>
+                    
+                    if let stateDistricts = districtData {
+                        
+                        stateDistricts.forEach { (key, value) in
+                            let confirmed = (value as? Dictionary<String, Any>)?["confirmed"] as? Int
+                            let district = DistrictData(name: key, confirmed: confirmed ?? 0)
+                            
+                            DispatchQueue.main.async {
+                                self.basicData.statewise[index].districts.append(district)
+                            }
+                        }
+                    }
+                }
+            }
+            catch {
+                
+            }
+            
+        }
+    }
     private func startRefreshTimer() {
         if refreshTimer != nil {
             refreshTimer?.invalidate()

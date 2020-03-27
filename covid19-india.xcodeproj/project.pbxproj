@@ -24,6 +24,8 @@
 		DC710D83242C9D48005B355F /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC710D82242C9D48005B355F /* Fact.swift */; };
 		DC710D85242CA407005B355F /* StatCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC710D84242CA407005B355F /* StatCards.swift */; };
 		DC710D87242CA441005B355F /* StatCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC710D86242CA441005B355F /* StatCardViewModel.swift */; };
+		DCA55E2A242E631400EEE939 /* DistrcitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA55E29242E631400EEE939 /* DistrcitView.swift */; };
+		DCA55E2C242E63A100EEE939 /* DistrictData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA55E2B242E63A100EEE939 /* DistrictData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		DC710D82242C9D48005B355F /* Fact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		DC710D84242CA407005B355F /* StatCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCards.swift; sourceTree = "<group>"; };
 		DC710D86242CA441005B355F /* StatCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCardViewModel.swift; sourceTree = "<group>"; };
+		DCA55E29242E631400EEE939 /* DistrcitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrcitView.swift; sourceTree = "<group>"; };
+		DCA55E2B242E63A100EEE939 /* DistrictData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				DC710D7E242C8D11005B355F /* BasicData.swift */,
+				DCA55E2B242E63A100EEE939 /* DistrictData.swift */,
 				DC710D82242C9D48005B355F /* Fact.swift */,
 			);
 			path = Model;
@@ -172,6 +177,7 @@
 			children = (
 				DC710D48242C8A6C005B355F /* HomeTabView.swift */,
 				DC710D74242C8B2F005B355F /* HomeView.swift */,
+				DCA55E29242E631400EEE939 /* DistrcitView.swift */,
 				DC710D84242CA407005B355F /* StatCards.swift */,
 			);
 			path = View;
@@ -337,6 +343,8 @@
 				DC710D49242C8A6C005B355F /* HomeTabView.swift in Sources */,
 				DC710D75242C8B2F005B355F /* HomeView.swift in Sources */,
 				DC710D7F242C8D11005B355F /* BasicData.swift in Sources */,
+				DCA55E2C242E63A100EEE939 /* DistrictData.swift in Sources */,
+				DCA55E2A242E631400EEE939 /* DistrcitView.swift in Sources */,
 				DC710D44242C8A6C005B355F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

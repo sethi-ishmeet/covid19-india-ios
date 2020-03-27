@@ -4,57 +4,64 @@ struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()
     
     var body: some View {
-        VStack {
-            
-            Text(viewModel.fact.0)
-                .padding()
-                .font(.caption)
-                .multilineTextAlignment(.center)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 70, alignment: .center)
-            
-            Divider()
-            
-            HStack {
-                Text("State/UT")
+        NavigationView {
+            VStack {
+                Divider()
+                
+                Text(viewModel.fact.0)
+                    .padding()
                     .font(.caption)
-                    .bold()
-                Spacer()
-                Text("Confirmed")
-                    .font(.caption)
-                    .bold()
-                    .frame(width: 80, height: 10, alignment: .center)
-                Text("Active")
-                    .font(.caption)
-                    .bold()
-                    .frame(width: 60, height: 10, alignment: .center)
-                Text("Recovered")
-                    .font(.caption)
-                    .bold()
-                    .frame(width: 70, height: 10, alignment: .center)
-                Text("Deaths")
-                    .font(.caption)
-                    .bold()
-                    .frame(width: 50, height: 10, alignment: .center)
-            }
-            .padding()
-            
-            if viewModel.totalRow != nil {
+                    .multilineTextAlignment(.center)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 70, alignment: .center)
+                
+                Divider()
+                
+                
                 HStack {
-                    StateRowView(state: viewModel.totalRow!)
+                    Text("State/UT")
+                        .font(.caption)
+                        .bold()
+                    Spacer()
+                    Text("Confirmed")
+                        .font(.caption)
+                        .bold()
+                        .frame(width: 80, height: 10, alignment: .center)
+                    Text("Active")
+                        .font(.caption)
+                        .bold()
+                        .frame(width: 60, height: 10, alignment: .center)
+                    Text("Recovered")
+                        .font(.caption)
+                        .bold()
+                        .frame(width: 70, height: 10, alignment: .center)
+                    Text("Deaths")
+                        .font(.caption)
+                        .bold()
+                        .frame(width: 50, height: 10, alignment: .center)
                 }
                 .padding()
                 
-                Divider()
-            }
-            
-            List {
-                ForEach(viewModel.basicData.statewise, id: \.state) { state in
-                    HStack{
-                        StateRowView(state: state)
+                if viewModel.totalRow != nil {
+                    HStack {
+                        StateRowView(state: viewModel.totalRow!)
                     }
-                    .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
+                    .padding(EdgeInsets.init(top: 20, leading: 15, bottom: 20, trailing: 30))
+                    
+                    Divider()
+                }
+                
+                List {
+                    ForEach(viewModel.basicData.statewise, id: \.state) { state in
+                        NavigationLink(destination: DistrcitView(state: state)) {
+                            HStack{
+                                StateRowView(state: state)
+                            }
+                            .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
+                        }
+                    }
                 }
             }
+            .navigationBarTitle("Covid-19 Tracker")
         }
         .onAppear {
             self.viewModel.fetchData()
@@ -83,10 +90,10 @@ struct StateRowView: View {
             Spacer()
             
             NegativeState(value: state.confirmed, delta: state.delta.confirmed)
-                .frame(width: 80, height: 10, alignment: .center)
+                .frame(width: 70, height: 10, alignment: .center)
             
             NegativeState(value: state.active, delta: state.delta.active)
-                .frame(width: 60, height: 10, alignment: .center)
+                .frame(width: 50, height: 10, alignment: .center)
             
             VStack {
                 Text(state.recovered.format())
@@ -110,10 +117,10 @@ struct StateRowView: View {
                     }
                 }
             }
-            .frame(width: 70, height: 10, alignment: .center)
+            .frame(width: 60, height: 10, alignment: .center)
             
             NegativeState(value: state.deaths, delta: state.delta.deaths)
-                .frame(width: 50, height: 10, alignment: .center)
+                .frame(width: 40, height: 10, alignment: .center)
             
         }
     }

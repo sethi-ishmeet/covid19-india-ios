@@ -13,6 +13,16 @@ struct BasicData: Codable {
 struct StatewiseTally: Codable {
     var delta: Delta
     var state: String
+    var districts: [DistrictData] = []
+    
+    init(state: String, delta: Delta) {
+        self.state = state
+        self.delta = delta
+        _confirmed = ""
+        _active = ""
+        _deaths = ""
+        _recovered = ""
+    }
     
     private var _confirmed: String
     public var confirmed: Int {
@@ -53,10 +63,10 @@ struct StatewiseTally: Codable {
 }
 
 struct Delta: Codable {
-    public var confirmed: Int
-    public var active: Int
-    public var deaths: Int
-    public var recovered: Int
+    var confirmed: Int
+    var active: Int
+    var deaths: Int
+    var recovered: Int
 }
 
 struct KeyStats: Codable {
