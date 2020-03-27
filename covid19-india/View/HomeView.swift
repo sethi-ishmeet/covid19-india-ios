@@ -96,7 +96,7 @@ struct StateRowView: View {
                             .resizable()
                             .foregroundColor(.green)
                             .frame(width: 10, height: 10, alignment: .center)
-                        Text(state.delta.active.format())
+                        Text(state.delta.recovered.format())
                             .font(.caption)
                             .foregroundColor(.green)
                     }

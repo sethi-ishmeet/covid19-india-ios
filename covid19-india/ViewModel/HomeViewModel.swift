@@ -33,6 +33,7 @@ class HomeViewModel: ObservableObject {
                 
                 if let totalRow = total {
                     self.totalRow = totalRow
+                    self.totalRow?.delta.recovered = details.stats.first?.recoveredDelta ?? 0
                 }
                 
                 if self.refreshTimer == nil {
